@@ -7,14 +7,15 @@ import VisionSection from "../../components/VisionSection/VisionSection";
 import ContactSection from "../../components/ContactSection/ContactSection";
 import Title from "../../components/Title/Title";
 import NextEvent from "../../components/NextEvent/NextEvent";
+import PastEvent from "../../components/PastEvent/PastEvent";
 import Container from "../../components/Container/Container";
-import api from "../../Services/Service";
+import api, { pastEventResource } from "../../Services/Service";
 import Notification from "../../components/Notification/Notification";
 import { nextEventResource } from "../../Services/Service";
 
-
 const HomePage = () => {
   const [nextEvents, setNextEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState([]);
   const [notifyUser, setNotifyUser] = useState(); //Componente Notification
 
   // roda somente na inicialização do componente
@@ -25,7 +26,6 @@ const HomePage = () => {
         const dados = await promise.data;
         // console.log(dados);
         setNextEvents(dados); //atualiza o state
-
       } catch (error) {
         console.log("não trouxe os próximos eventos, verifique lá!");
         // setNotifyUser({
@@ -39,11 +39,21 @@ const HomePage = () => {
       }
     }
 
+    async function getPastEvents() {
+      try {
+        const promise = await api.get(pastEventResource);
+        const dados = await promise.data;
+        setPastEvents(dados);
+      } catch (error) {
+        console.log("não trouxe os eventos anteriores, verifique lá!");
+      }
+    }
+
+    getPastEvents();
     getNextEvents(); //chama a função
   }, []);
 
   return (
-    
     <MainContent>
       {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
       <Banner />
@@ -51,12 +61,32 @@ const HomePage = () => {
       {/* PRÓXIMOS EVENTOS */}
       <section className="proximos-eventos">
         <Container>
-          {/* <Title titleText={"Próximos Eventos"} /> */}
+          {<Title titleText={"Próximos Eventos"} />}
 
           <div className="events-box">
             {nextEvents.map((e) => {
               return (
                 <NextEvent
+                  key={e.idEvento}
+                  title={e.nomeEvento}
+                  description={e.descricao}
+                  eventDate={e.dataEvento}
+                  idEvent={e.idEvento}
+                />
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      <section className="proximos-eventos">
+        <Container>
+          {<Title titleText={"Eventos Anteriores"} />}
+
+          <div className="events-box">
+            {pastEvents.map((e) => {
+              return (
+                <PastEvent
                   key={e.idEvento}
                   title={e.nomeEvento}
                   description={e.descricao}

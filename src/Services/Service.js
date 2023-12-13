@@ -38,6 +38,8 @@ export const institutionResource = "/Instituicao";
  */
 export const loginResource = "/Login";
 
+export const pastEventResource = "/Evento/ListarAnteriores";
+
 // const apiPort = '5000';
 // const localApiUri = `http://localhost:${apiPort}/api`;
 const externalApiUri = "https://eventplus-webapi.azurewebsites.net/api";

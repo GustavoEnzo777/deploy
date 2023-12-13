@@ -21,6 +21,9 @@ const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
             Data
           </th>
           <th className="tbal-data__head-title tbal-data__head-title--big">
+            Detalhes
+          </th>
+          <th className="tbal-data__head-title tbal-data__head-title--big">
             Ações
           </th>
         </tr>
