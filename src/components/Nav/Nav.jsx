@@ -48,6 +48,10 @@ const Nav = ({ exibeNavbar, setExibeNavbar }) => {
           </Link>
         ) : null}
 
+        <Link to="detalhes-evento" className="navbar__item">
+        Detalhes dos Eventos
+        </Link>
+
         {/* <Link  className='navbar__item' to="/login">Login</Link> */}
         {/* <Link className="navbar__item" to="/testes">
           Testes

@@ -40,6 +40,10 @@ export const loginResource = "/Login";
 
 export const pastEventResource = "/Evento/ListarAnteriores";
 
+export const commentsResource = "/ComentariosEvento";
+
+export const commentsResourceIA = "/ComentariosEvento/ListarSomenteExibe";
+
 // const apiPort = '5000';
 // const localApiUri = `http://localhost:${apiPort}/api`;
 const externalApiUri = "https://eventplus-webapi.azurewebsites.net/api";

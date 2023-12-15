@@ -1,5 +1,6 @@
 import React from "react";
 import comentaryIcon from "../../../assets/images/comentary-icon.svg";
+import detalhesEvento from "../../../assets/images/detalhesevento.svg";
 import { dateFormateDbToView } from "../../../Utils/stringFunctions";
 import ToggleSwitch from "../../../components/Toggle/Toggle";
 // importa a biblioteca de tootips ()
@@ -20,9 +21,7 @@ const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
           <th className="tbal-data__head-title tbal-data__head-title--big">
             Data
           </th>
-          <th className="tbal-data__head-title tbal-data__head-title--big">
-            Detalhes
-          </th>
+
           <th className="tbal-data__head-title tbal-data__head-title--big">
             Ações
           </th>
@@ -42,8 +41,9 @@ const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
               </td>
 
               <td className="tbal-data__data tbal-data__data--big tbal-data__btn-actions">
+
                 {/* imagem do comentário - abre o modal */}
-                {new Date(e.dataEvento) < Date.now() ? (
+                {new Date(e.dataEvento) < Date.now() && e.situacao? (
                   <img
                     className="tbal-data__icon"
                     // idevento={e.idEvento}
@@ -54,6 +54,17 @@ const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
                     }}
                   />
                 ) : null}
+
+                 {/* { ? (
+                  <img
+                    className="tbal-data__icon"
+                    idevento={e.idEvento}
+                    src={comentaryIcon}
+                    alt=""
+                    onClick={fnShowModal}
+                  />
+                ) : null}  */}
+
                 <ToggleSwitch
                   toggleActive={e.situacao}
                   manipulationFunction={

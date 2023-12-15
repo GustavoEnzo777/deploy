@@ -5,6 +5,7 @@ import { Tooltip } from "react-tooltip";
 
 // importar a função lá do arquivo stringFunction (destructuring)
 import { dateFormatDbToView } from "../../Utils/stringFunctions";
+import { Link } from "react-router-dom";
 
 const PastEvent = ({ title, description, eventDate, idEvent }) => {
   function conectar(idEvent) {
@@ -29,15 +30,9 @@ const PastEvent = ({ title, description, eventDate, idEvent }) => {
         {/* aplicar a função pra converter a data */}
         {dateFormatDbToView(eventDate)}
       </p>
-
-      <a
-        onClick={() => {
-          conectar(idEvent);
-        }}
-        className="event-card__connect-link"
-      >
-        Conectar
-      </a>
+      <Link to="detalhes-evento"className="event-card__connect-link">
+      Detalhes
+      </Link>
     </article>
   );
 };
